@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { handleTodoListRequest, handleDeleteTodo } from '../../store/todo';
+
+import { ACTIONS } from '../../actions/todo';
+
 import Todo from '../Todo';
 
 export default function TodoList() {
@@ -8,7 +10,7 @@ export default function TodoList() {
 	const { todoList } = useSelector(state => state.todo);
 
 	useEffect(() => {
-		dispatch(handleTodoListRequest());
+		dispatch(ACTIONS.todoList.onRequest());
 	}, []);
 
 	const handleTodoListClick = ({ target }) => {
@@ -16,7 +18,7 @@ export default function TodoList() {
 		const { id } = target.dataset;
 
 		if (id && tagName === 'BUTTON') {
-			dispatch(handleDeleteTodo(+id));
+			dispatch(ACTIONS.todo.onDelete(+id));
 		}
 	};
 

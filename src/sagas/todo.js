@@ -1,20 +1,18 @@
 import { call, takeEvery, put } from 'redux-saga/effects';
 import { getTodoList } from '../api/todo';
-import {
-	TODO_LIST_REQUEST,
-	todoListSuccess,
-	todoListFailure,
-} from '../store/todo';
+import { TYPES, ACTIONS } from '../actions/todo';
 
 function* getTodoListSaga() {
+	const actions = ACTIONS.todoList;
+
 	try {
 		const todoList = yield call(getTodoList);
-		yield put(todoListSuccess(todoList));
+		yield put(actions.onSuccess(todoList));
 	} catch {
-		yield put(todoListFailure);
+		yield put(actions.onFail());
 	}
 }
 
 export default function* todoSaga() {
-	yield takeEvery(TODO_LIST_REQUEST, getTodoListSaga);
+	yield takeEvery(TYPES.TODO_LIST_REQUEST, getTodoListSaga);
 }
