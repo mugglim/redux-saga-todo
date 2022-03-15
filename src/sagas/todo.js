@@ -9,7 +9,7 @@ import {
 function* getTodoListSaga() {
 	try {
 		const todoList = yield call(getTodoList);
-		yield put(todoListSuccess({ todoList }));
+		yield put(todoListSuccess(todoList));
 	} catch {
 		yield put(todoListFailure);
 	}

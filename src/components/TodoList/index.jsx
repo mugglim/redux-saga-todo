@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { handleDeleteTodo } from '../../store/todo';
+import { handleTodoListRequest, handleDeleteTodo } from '../../store/todo';
 import Todo from '../Todo';
 
 export default function TodoList() {
@@ -8,7 +8,7 @@ export default function TodoList() {
 	const { todoList } = useSelector(state => state.todo);
 
 	useEffect(() => {
-		dispatch({ type: 'todo/TODO_LIST_REQUEST' });
+		dispatch(handleTodoListRequest());
 	}, []);
 
 	const handleTodoListClick = ({ target }) => {
