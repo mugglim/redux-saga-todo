@@ -23,8 +23,8 @@ export default function TodoList() {
 	return (
 		<ul onClick={handleTodoListClick}>
 			{todoList &&
-				todoList.map(({ id, title, status }) => (
-					<Todo key={id} id={id} title={title} status />
+				todoList.map(({ id, title }) => (
+					<Todo key={id} id={id} title={title} />
 				))}
 		</ul>
 	);
